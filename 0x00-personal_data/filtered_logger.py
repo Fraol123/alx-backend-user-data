@@ -19,6 +19,7 @@ def filter_datum(fields: List[str], redaction: str,
                       field + "=" + redaction + separator, temp)
     return temp
 
+
 def get_logger() -> logging.Logger:
     """ Returns logger obj  """
     logger = logging.getLogger('user_data')
@@ -65,6 +66,8 @@ class RedactingFormatter(logging.Formatter):
             self.fields, self.REDACTION, super(
                 RedactingFormatter, self).format(record),
             self.SEPARATOR)
+
+
 def main() -> None:
     """
     Obtain a database connection using get_db
