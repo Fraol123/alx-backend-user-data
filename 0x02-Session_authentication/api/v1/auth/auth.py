@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """
 API authentication module
@@ -5,6 +6,7 @@ API authentication module
 
 from flask import request
 from typing import List, TypeVar
+from os import getenv
 
 
 class Auth:
@@ -12,7 +14,6 @@ class Auth:
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """ Checks if API routes require authentication """
-
         if path is None or not excluded_paths:
             return True
         for i in excluded_paths:
@@ -33,3 +34,10 @@ class Auth:
     def current_user(self, request=None) -> TypeVar('User'):
         """ placeholder """
         return None
+
+    def session_cookie(self, request=None):
+        """ Returns cookie value from a request """
+        if request is None:
+            return None
+
+        return request.cookies.get(getenv('SESSION_NAME'))
