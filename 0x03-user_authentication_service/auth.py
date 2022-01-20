@@ -9,12 +9,15 @@ from sqlalchemy.exc import InvalidRequestError
 from uuid import uuid4
 from typing import Union
 
+
 def _hash_password(password: str) -> str:
     """ Takes in string arg, converts to unicode Returns
     salted, hashed pswd as bytesstring"""
     return hashpw(password.encode('utf-8'), gensalt())
 
+
 from db import DB
+
 
 def _generate_uuid() -> str:
     """ Generates UUID
